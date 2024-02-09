@@ -1,14 +1,16 @@
-import NavBar from "./components/NavBar";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DashBoard from "./components/DashBoard";
+import Layout from "./components/Layout";
 const App = () => {
   return (
-    <>
-      <div className="flex flex-wrap items-center justify-center">
-        <NavBar />
-        <DashBoard />
-        <h1 className="test-4xl font-semibold">React App</h1>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
