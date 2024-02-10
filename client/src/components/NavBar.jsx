@@ -1,8 +1,18 @@
 import { Menu as MenuIcon, Search } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useState } from "react";
 
-const NavBar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const NavBar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isOpen = Boolean(anchorEl);
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="static bg-transparent shadow-none">
       <div className="flex flex-row justify-between  bg-slate-500">
@@ -26,8 +36,11 @@ const NavBar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </IconButton>
           </div>
         </div>
+
+        {/* Right side of the navbar */}
+
         <div className="flex items-center ">
-          <IconButton>
+          <IconButton onClick={handleMenu}>
             <AccountCircleIcon className="text-white" sx={{ fontSize: 40 }} />
           </IconButton>
         </div>

@@ -1,6 +1,7 @@
 import {
   Box,
   Drawer,
+  Divider,
   IconButton,
   List,
   ListItem,
@@ -24,10 +25,12 @@ import {
   AdminPanelSettingsOutlined,
   PieChartOutlined,
   TrendingUpOutlined,
+  SettingsOutlined,
 } from "@mui/icons-material";
 
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ThemeConsumer } from "styled-components";
 
 const navItems = [
   {
@@ -89,6 +92,7 @@ const navItems = [
 ];
 
 const Sidebar = ({
+  user,
   isNonMobile,
   drawerWidth,
   isSidebarOpen,
@@ -97,8 +101,6 @@ const Sidebar = ({
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
-
-  console.log(isNonMobile);
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -174,6 +176,39 @@ const Sidebar = ({
                 );
               })}
             </List>
+          </Box>
+          <Divider />
+          <Box className="py-3 mx-1 ">
+            <div className="flex items-center justify-between notransform mr-3  ml-2 gap-4">
+              <Box
+                component="img"
+                alt="profile"
+                src="https://modernize-nextjs.adminmart.com/images/profile/user-1.jpg"
+                height="40px"
+                width="40px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
+              />
+              <Box textAlign="left">
+                <Typography
+                  fontWeight="bold"
+                  fontSize="0.9rem"
+                  sx={{
+                    color: "text.primary",
+                  }}
+                >
+                  {user.name}
+                </Typography>
+                <Typography
+                  fontSize="0.7rem"
+                  sx={{
+                    color: "text.primary",
+                  }}
+                >
+                  {user.occupation}
+                </Typography>
+              </Box>
+            </div>
           </Box>
         </Drawer>
       )}
