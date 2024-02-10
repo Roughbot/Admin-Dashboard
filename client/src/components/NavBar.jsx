@@ -2,20 +2,24 @@ import { Menu as MenuIcon, Search } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const NavBar = () => {
+const NavBar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
-    <div className="static bg-transparent shadow-none py-1">
-      <div className="flex flex-row justify-between">
-        <div className="flex items-center">
+    <div className="static bg-transparent shadow-none">
+      <div className="flex flex-row justify-between  bg-slate-500">
+        <div className="flex items-center  bg-slate-500">
           <div>
-            <IconButton onClick={() => console.log("side Bar icon")}>
+            <IconButton
+              onClick={() => {
+                setIsSidebarOpen(!isSidebarOpen);
+              }}
+            >
               <MenuIcon />
             </IconButton>
           </div>
-          <div className="flex justify-between gap-3 items-center rounded-lg bg-slate-500 px-4 py-1.5">
+          <div className="flex justify-between gap-3 items-center bg-slate-600 px-4 py-1.5">
             <input
               className="rounded-md bg-slate-300"
-              placeholder="  Search..."
+              placeholder=" Search..."
             />
             <IconButton>
               <Search className="text-white" />
@@ -24,7 +28,7 @@ const NavBar = () => {
         </div>
         <div className="flex items-center ">
           <IconButton>
-            <AccountCircleIcon sx={{ fontSize: 40 }} />
+            <AccountCircleIcon className="text-white" sx={{ fontSize: 40 }} />
           </IconButton>
         </div>
       </div>
