@@ -10,12 +10,10 @@ import {
   ListItemButton,
   Typography,
 } from "@mui/material";
-import FlexBetween from "./FlexBetween";
 import {
   HomeOutlined,
   ChevronLeft,
   ChevronRightOutlined,
-  ShoppingCartOutlined,
   Groups2Outlined,
   ReceiptLongOutlined,
   PublicOutlined,
@@ -25,7 +23,7 @@ import {
   AdminPanelSettingsOutlined,
   PieChartOutlined,
   TrendingUpOutlined,
-  SettingsOutlined,
+  AspectRatio,
 } from "@mui/icons-material";
 
 import { useEffect, useState } from "react";
@@ -41,8 +39,8 @@ const navItems = [
     icon: null,
   },
   {
-    name: "Products",
-    icon: <ShoppingCartOutlined />,
+    name: "Posts",
+    icon: <AspectRatio />,
   },
   {
     name: "Customers",
@@ -124,7 +122,7 @@ const Sidebar = ({
             },
           }}
         >
-          <Box width="100%">
+          <Box width="100%" className="bg-slate-400">
             <Box m="1.5rem 2rem 2rem 3rem">
               <div className="flex justify-center items-center">
                 <Box className="flex items-center gap-2">
@@ -155,20 +153,31 @@ const Sidebar = ({
                       selected={active === lcText}
                       onClick={() => navigate(`/${lcText}`)}
                       sx={{
-                        backgroundColor: active === lcText && "primary.main",
+                        backgroundColor:
+                          active === lcText ? "primary.main" : undefined,
                       }}
                     >
                       <ListItemIcon
                         sx={{
-                          color: active === lcText && "common.white",
+                          color: active === lcText && "#F0F3FF",
                           ml: "2rem",
                         }}
                       >
                         {icon}
                       </ListItemIcon>
-                      <ListItemText primary={name} />
+                      <ListItemText
+                        sx={{
+                          color: active === lcText && "#F0F3FF",
+                        }}
+                        primary={name}
+                      />
                       {active === lcText && (
-                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                        <ChevronRightOutlined
+                          sx={{
+                            ml: "auto",
+                            color: active === lcText && "#F0F3FF",
+                          }}
+                        />
                       )}
                     </ListItemButton>
                   </ListItem>
@@ -177,8 +186,8 @@ const Sidebar = ({
             </List>
           </Box>
           <Divider />
-          <Box className="py-3 mx-1 ">
-            <div className="flex items-center justify-between notransform mr-3  ml-2 gap-4">
+          <Box className="py-3 ml-1 ">
+            <div className="flex items-center notransform mr-3  ml-2 gap-4">
               <Box
                 component="img"
                 alt="profile"

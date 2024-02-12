@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Box, useMediaQuery } from "@mui/material";
-import Navbar from "./Navbar";
+import Navbar from "./NavBar";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import { useGetUserQuery } from "../state/getDataApi";
+import { useGetUserQuery } from "../../state/getDataApi";
 import { useSelector } from "react-redux";
 
 const Layout = () => {
