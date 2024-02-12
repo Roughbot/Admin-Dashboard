@@ -1,5 +1,15 @@
-import { Menu as MenuIcon, Search } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import {
+  ArrowDropDownOutlined,
+  Menu as MenuIcon,
+  Search,
+} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  IconButton,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 
@@ -41,7 +51,52 @@ const NavBar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
 
         <div className="flex items-center ">
           <IconButton onClick={handleMenu}>
-            <AccountCircleIcon className="text-white" sx={{ fontSize: 40 }} />
+            {/* <AccountCircleIcon className="text-white" sx={{ fontSize: 40 }} />
+             */}
+            <Button
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textTransform: "none",
+                gap: "1rem",
+              }}
+            >
+              <Box
+                component="img"
+                alt="profile"
+                src="https://modernize-nextjs.adminmart.com/images/profile/user-1.jpg"
+                height="40px"
+                width="40px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
+              />
+              <Box textAlign="left">
+                <Typography
+                  fontWeight="bold"
+                  fontSize="0.85rem"
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  {user.name}
+                </Typography>
+                <Typography
+                  fontSize="0.75rem"
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  {user.occupation}
+                </Typography>
+              </Box>
+              <ArrowDropDownOutlined
+                className="text-white"
+                sx={{
+                  fontSize: "25px",
+                }}
+              />
+            </Button>
           </IconButton>
         </div>
       </div>

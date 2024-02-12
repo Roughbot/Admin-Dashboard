@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import getdata from "./routes/getdata.js";
+import getUser from "./routes/userdata.js";
 
 dotenv.config();
 const app = express();
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
 app.use("/getData", getdata);
+app.use("/getUser", getUser);
 
 // Connect to MongoDB
 const PORT = process.env.PORT || 9000;
@@ -35,7 +37,22 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-// Seed Data
+// Seed User Data
+// import User from "./models/Users.js";
+// import { dataUser } from "./data/index.js";
+
+// const seedData = async () => {
+//   try {
+//     await User.insertMany(dataUser);
+//     console.log("Data imported successfully");
+//   } catch (error) {
+//     console.error("Error importing data");
+//   }
+// };
+
+// seedData();
+
+// Seed graph Data
 // import fs from "fs";
 // import path from "path";
 // import util from "util";
