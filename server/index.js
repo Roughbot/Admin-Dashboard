@@ -7,6 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import getdata from "./routes/getdata.js";
 import getUser from "./routes/userdata.js";
+import getGeoData from "./routes/getGeoData.js";
 
 dotenv.config();
 const app = express();
@@ -19,9 +20,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
-app.use("/getData", getdata);
-app.use("/getUser", getUser);
-
+app.use("/getdata", getdata);
+app.use("/getuser", getUser);
+app.use("/getgeodata", getGeoData);
 // Connect to MongoDB
 const PORT = process.env.PORT || 9000;
 mongoose

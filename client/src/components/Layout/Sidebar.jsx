@@ -42,14 +42,7 @@ const navItems = [
     name: "Posts",
     icon: <AspectRatio />,
   },
-  {
-    name: "Customers",
-    icon: <Groups2Outlined />,
-  },
-  {
-    name: "Transactions",
-    icon: <ReceiptLongOutlined />,
-  },
+
   {
     name: "Geography",
     icon: <PublicOutlined />,

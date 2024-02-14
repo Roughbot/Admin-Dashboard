@@ -11,13 +11,10 @@ import {
   Divider,
 } from "@mui/material";
 
-import { useState } from "react";
 import PostCard from "./PostCard";
 import { useGetDataQuery } from "../../state/getDataApi";
 const Posts = () => {
   const { data, isLoading } = useGetDataQuery();
-  console.log(data);
-  const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
   return (
     <div className="flex flex-col bg-zinc-200 w-full h-full">
