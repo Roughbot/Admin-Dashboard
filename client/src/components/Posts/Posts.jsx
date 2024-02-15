@@ -2,24 +2,42 @@ import { Divider } from "@mui/material";
 
 import PostCard from "./PostCard";
 import { useGetDataQuery } from "../../state/getDataApi";
-import { Pagination } from "@mui/material";
+import { Pagination, TextField } from "@mui/material";
 import { useState } from "react";
 
 const Posts = () => {
   const { data, isLoading } = useGetDataQuery();
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
   const itemsPerPage = 15;
 
+  const filteredItems = data
+    ? data.filter((item) =>
+        Object.values(item).some(
+          (val) =>
+            val !== null &&
+            val !== undefined &&
+            val.toString().toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    : [];
   const indexOfLastItem = page * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = data
-    ? data.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = filteredItems
+    ? filteredItems.slice(indexOfFirstItem, indexOfLastItem)
     : [];
 
-  const totalPages = data ? Math.ceil(data.length / itemsPerPage) : 0;
+  const totalPages = filteredItems
+    ? Math.ceil(filteredItems.length / itemsPerPage)
+    : 0;
+
   const handleChange = (event, value) => {
     setPage(value);
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
@@ -31,12 +49,22 @@ const Posts = () => {
         </p>
       </div>
       <Divider />
+      <div className="flex justify-center mt-5">
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pt-6 ml-6 mr-6">
         {currentItems.map((item) => {
           return <PostCard key={item._id} props={item} />;
         })}
       </div>
-      {!data && <p className="font-semibold text-xl text-center">Loading...</p>}
+      {isLoading && (
+        <p className="font-semibold text-xl text-center">Loading...</p>
+      )}
       <div className="flex justify-center mt-10">
         <Pagination
           shape="rounded"
