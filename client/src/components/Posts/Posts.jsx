@@ -32,14 +32,11 @@ const Posts = () => {
       </div>
       <Divider />
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pt-6 ml-6 mr-6">
-        {currentItems || !isLoading ? (
-          currentItems.map((item) => {
-            return <PostCard key={item._id} props={item} />;
-          })
-        ) : (
-          <p>Loading...</p>
-        )}
+        {currentItems.map((item) => {
+          return <PostCard key={item._id} props={item} />;
+        })}
       </div>
+      {!data && <p className="font-semibold text-xl text-center">Loading...</p>}
       <div className="flex justify-center mt-10">
         <Pagination
           shape="rounded"
