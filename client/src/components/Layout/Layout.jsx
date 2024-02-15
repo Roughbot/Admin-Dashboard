@@ -14,23 +14,25 @@ const Layout = () => {
   const { data } = useGetUserQuery(userId);
 
   return (
-    <Box display={isNonMobile ? "flex" : "block"} width="100%" heigh="100%">
-      <Sidebar
-        user={data || {}}
-        isNonMobile={isNonMobile}
-        drawerWidth="250px"
-        isSidebarOpen={isSidebarOpen}
-        setIsSidebarOpen={setIsSidebarOpen}
-      />
-      <Box flexGrow={1}>
-        <Navbar
+    <div className="flex bg-zinc-300">
+      <Box display={isNonMobile ? "flex" : "block"} width="100%" heigh="100%">
+        <Sidebar
           user={data || {}}
+          isNonMobile={isNonMobile}
+          drawerWidth="250px"
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
-        <Outlet />
+        <Box flexGrow={1}>
+          <Navbar
+            user={data || {}}
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+          <Outlet />
+        </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 
