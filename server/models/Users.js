@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
     occupation: String,
     phoneNumber: String,
     transactions: Array,
-    rote: {
+    role: {
       type: String,
       enum: ["user", "admin", "superadmin"],
       default: "admin",

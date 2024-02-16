@@ -1,7 +1,6 @@
 import {
   Box,
   Drawer,
-  Divider,
   IconButton,
   List,
   ListItem,
@@ -13,13 +12,9 @@ import {
 import {
   HomeOutlined,
   ChevronLeft,
+  Group,
   ChevronRightOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
   PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
   AdminPanelSettingsOutlined,
   PieChartOutlined,
   TrendingUpOutlined,
@@ -42,30 +37,23 @@ const navItems = [
     name: "Posts",
     icon: <AspectRatio />,
   },
+  {
+    name: "Customers",
+    icon: <Group />,
+  },
 
   {
     name: "Geography",
     icon: <PublicOutlined />,
   },
-  {
-    name: "Sales",
-    icon: null,
-  },
-  {
-    name: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    name: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    name: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
+
   {
     name: "Admin",
     icon: null,
+  },
+  {
+    name: "Trending",
+    icon: <TrendingUpOutlined />,
   },
   {
     name: "Settings",
@@ -74,10 +62,6 @@ const navItems = [
   {
     name: "Reports",
     icon: <PieChartOutlined />,
-  },
-  {
-    name: "Trending",
-    icon: <TrendingUpOutlined />,
   },
 ];
 
@@ -115,10 +99,13 @@ const Sidebar = ({
             },
           }}
         >
-          <Box width="100%" className="bg-slate-400">
+          <Box
+            width="100%"
+            className="bg-slate-400 flex flex-col justify-between h-full"
+          >
             <Box m="1.5rem 2rem 2rem 3rem">
-              <div className="flex justify-center items-center">
-                <Box className="flex items-center gap-2">
+              <div className="flex justify-between items-center">
+                <Box className="flex items-center mt-5 gap-2">
                   <Typography variant="h5" color="text.primary">
                     BlackClover
                   </Typography>
@@ -177,39 +164,39 @@ const Sidebar = ({
                 );
               })}
             </List>
-          </Box>
-          <Divider />
-          <Box className="py-3 ml-1 ">
-            <div className="flex items-center notransform mr-3  ml-2 gap-4">
-              <Box
-                component="img"
-                alt="profile"
-                src="https://modernize-nextjs.adminmart.com/images/profile/user-1.jpg"
-                height="40px"
-                width="40px"
-                borderRadius="50%"
-                sx={{ objectFit: "cover" }}
-              />
-              <Box textAlign="left">
-                <Typography
-                  fontWeight="bold"
-                  fontSize="0.9rem"
-                  sx={{
-                    color: "text.primary",
-                  }}
-                >
-                  {user.name}
-                </Typography>
-                <Typography
-                  fontSize="0.7rem"
-                  sx={{
-                    color: "text.primary",
-                  }}
-                >
-                  {user.occupation}
-                </Typography>
-              </Box>
-            </div>
+
+            <Box className="py-3 ml-1 bg-slate-400 ">
+              <div className="flex items-center notransform mr-3  ml-2 gap-4">
+                <Box
+                  component="img"
+                  alt="profile"
+                  src="https://modernize-nextjs.adminmart.com/images/profile/user-1.jpg"
+                  height="40px"
+                  width="40px"
+                  borderRadius="50%"
+                  sx={{ objectFit: "cover" }}
+                />
+                <Box textAlign="left">
+                  <Typography
+                    fontWeight="bold"
+                    fontSize="0.9rem"
+                    sx={{
+                      color: "text.primary",
+                    }}
+                  >
+                    {user.name}
+                  </Typography>
+                  <Typography
+                    fontSize="0.7rem"
+                    sx={{
+                      color: "text.primary",
+                    }}
+                  >
+                    {user.occupation}
+                  </Typography>
+                </Box>
+              </div>
+            </Box>
           </Box>
         </Drawer>
       )}

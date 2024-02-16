@@ -5,7 +5,7 @@ export const getData = createApi({
     baseUrl: import.meta.env.VITE_REACT_APP_BASE_URL,
   }),
   reducerPath: "dataApi",
-  tagTypes: ["User", "Geography", "Data"],
+  tagTypes: ["User", "Geography", "Data", "CustomerData"],
   endpoints: (builder) => ({
     getData: builder.query({
       query: () => "getdata",
@@ -21,7 +21,17 @@ export const getData = createApi({
       query: () => "getgeodata",
       providesTags: ["Geography"],
     }),
+
+    getCustomerData: builder.query({
+      query: () => "getcustomerdata",
+      providesTags: ["CustomerData"],
+    }),
   }),
 });
 
-export const { useGetDataQuery, useGetUserQuery, useGetGeoDataQuery } = getData;
+export const {
+  useGetDataQuery,
+  useGetUserQuery,
+  useGetGeoDataQuery,
+  useGetCustomerDataQuery,
+} = getData;
