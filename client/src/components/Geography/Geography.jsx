@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 const Geography = () => {
   const { data } = useGetGeoDataQuery();
   return (
-    <div className="mx-16 my-2">
+    <div className="grid grid-cols-1 mx-16 my-2">
       <Box mt="1rem 2.5rem">
         <h1 className="font-semibold text-blue-500 text-4xl">Geography</h1>
         <p className="text-blue-500 font-mono text-sm">

@@ -107,7 +107,7 @@ const Sidebar = ({
               <div className="flex justify-between items-center">
                 <Box className="flex items-center mt-5 gap-2">
                   <Typography variant="h5" color="text.primary">
-                    BlackClover
+                    Admin Board
                   </Typography>
                 </Box>
                 {!isNonMobile && (

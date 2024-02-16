@@ -14,7 +14,7 @@ const Layout = () => {
   const { data } = useGetUserQuery(userId);
 
   return (
-    <div className="flex bg-zinc-300 overflow-auto">
+    <div className="flex bg-zinc-300 overflow-auto h-screen">
       <Box display={isNonMobile ? "flex" : "block"} width="100%" heigh="100%">
         <Sidebar
           user={data || {}}

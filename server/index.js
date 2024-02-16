@@ -9,6 +9,7 @@ import getdata from "./routes/getdata.js";
 import getUser from "./routes/userdata.js";
 import getGeoData from "./routes/getGeoData.js";
 import getCustomerData from "./routes/getCustomerData.js";
+import getSectorData from "./routes/getSectorData.js";
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.use("/getdata", getdata);
 app.use("/getuser", getUser);
 app.use("/getgeodata", getGeoData);
 app.use("/getcustomerdata", getCustomerData);
+app.use("/getsectordata", getSectorData);
 // Connect to MongoDB
 const PORT = process.env.PORT || 9000;
 mongoose

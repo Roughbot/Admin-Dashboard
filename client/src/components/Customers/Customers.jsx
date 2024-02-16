@@ -31,13 +31,13 @@ const Customers = () => {
   ];
 
   return (
-    <div>
+    <div className="grid grid-cols-1">
       <div className="mx-8 my-4">
         <div>
           <h1 className="text-4xl font-bold text-blue-500">Customers</h1>
           <p className="text-blue-400 ">List of all the customers</p>
         </div>
-        <div className="border-solid border-4 border-black mt-6">
+        <div className="border-solid border-4 border-black mt-6 h-[520px] w-full">
           <DataGrid
             loading={isLoading || !data}
             getRowId={(row) => row._id}

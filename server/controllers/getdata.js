@@ -35,3 +35,28 @@ export const getGeoData = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const getSectorData = async (req, res) => {
+  try {
+    const sectorData = await VisualData.find();
+    const mappedSectors = sectorData.reduce((acc, curr) => {
+      if (curr.sector !== "") {
+        if (!acc[curr.sector]) {
+          acc[curr.sector] = 0;
+        }
+        acc[curr.sector] += 1;
+      }
+      return acc;
+    }, {});
+
+    const formattedSectors = Object.entries(mappedSectors).map(
+      ([sector, count]) => {
+        return { id: sector, name: sector, value: count };
+      }
+    );
+
+    res.status(200).json(formattedSectors);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
