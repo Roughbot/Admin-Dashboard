@@ -1,8 +1,12 @@
+import { ResponsiveBar } from "@nivo/bar";
 import { useGetSectorDataQuery } from "../../state/getDataApi";
 import { ResponsivePie } from "@nivo/pie";
+import { useGetRegionDataQuery } from "../../state/getDataApi";
 
 const DashBoard = () => {
   const { data } = useGetSectorDataQuery();
+  const { data: regionData } = useGetRegionDataQuery();
+
   return (
     <div className="grid grid-cols-1">
       <div className="flex flex-col justify-between">
@@ -35,6 +39,50 @@ const DashBoard = () => {
             arcLabelsTextColor={{
               from: "color",
               modifiers: [["darker", 2]],
+            }}
+          />
+        </div>
+        <div className="h-[400px] ">
+          <h1 className="font-semibold text-center text-blue-500 text-4xl">
+            Top 8 Regions
+          </h1>
+          <ResponsiveBar
+            data={regionData || []}
+            indexBy="name"
+            margin={{ top: 50, right: 130, bottom: 50, left: 150 }}
+            padding={0.3}
+            valueScale={{ type: "linear" }}
+            indexScale={{ type: "band", round: true }}
+            colors={{ scheme: "nivo" }}
+            borderColor={{
+              from: "color",
+              modifiers: [["darker", 1.6]],
+            }}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: "Region",
+              legendPosition: "middle",
+              legendOffset: 32,
+              truncateTickAt: 0,
+            }}
+            axisLeft={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: "Posts",
+              legendPosition: "middle",
+              legendOffset: -40,
+              truncateTickAt: 0,
+            }}
+            labelSkipWidth={12}
+            labelSkipHeight={12}
+            labelTextColor={{
+              from: "color",
+              modifiers: [["darker", 1.6]],
             }}
           />
         </div>
