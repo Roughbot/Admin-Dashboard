@@ -21,6 +21,7 @@ const Posts = () => {
         )
       )
     : [];
+
   const indexOfLastItem = page * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 

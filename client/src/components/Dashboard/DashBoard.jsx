@@ -2,11 +2,18 @@ import { ResponsiveBar } from "@nivo/bar";
 import { useGetSectorDataQuery } from "../../state/getDataApi";
 import { ResponsivePie } from "@nivo/pie";
 import { useGetRegionDataQuery } from "../../state/getDataApi";
+import { useGetTopicDataQuery } from "../../state/getDataApi";
+import { useGetYearDataQuery } from "../../state/getDataApi";
+import ChartsComponent from "../ChartsComponent";
+import ScatterCharComponent from "../ScatterCharComponent";
 
 const DashBoard = () => {
   const { data } = useGetSectorDataQuery();
   const { data: regionData } = useGetRegionDataQuery();
+  const { data: topicData } = useGetTopicDataQuery();
+  const { data: yearData } = useGetYearDataQuery();
 
+  console.log(topicData);
   return (
     <div className="grid grid-cols-1">
       <div className="flex flex-col justify-between">
@@ -85,6 +92,12 @@ const DashBoard = () => {
               modifiers: [["darker", 1.6]],
             }}
           />
+        </div>
+        <div>
+          <ChartsComponent data={yearData} />
+        </div>
+        <div>
+          <ScatterCharComponent data={topicData} />
         </div>
       </div>
     </div>

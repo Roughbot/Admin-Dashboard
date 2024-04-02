@@ -35,6 +35,14 @@ export const getData = createApi({
       query: () => "getregiondata",
       providesTags: ["RegionData"],
     }),
+    getTopicData: builder.query({
+      query: () => "gettopicdata",
+      providesTags: ["TopicData"],
+    }),
+    getYearData: builder.query({
+      query: () => "getyeardata",
+      providesTags: ["YearData"],
+    }),
   }),
 });
 
@@ -45,4 +53,6 @@ export const {
   useGetCustomerDataQuery,
   useGetSectorDataQuery,
   useGetRegionDataQuery,
+  useGetTopicDataQuery,
+  useGetYearDataQuery,
 } = getData;

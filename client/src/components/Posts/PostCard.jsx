@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 const PostCard = ({ props }) => {
   const { title, url, country, topic, sector, published } = props;
 
+  let dateObject = new Date(published);
+  let normalDate = dateObject.toLocaleDateString();
   return (
     <div className="bg-white flex flex-col justify-between rounded-xl shadow-md overflow-hidden py-2 px-2">
       <div>
@@ -20,7 +22,7 @@ const PostCard = ({ props }) => {
         </div>
       </div>
       <div>
-        <p className="text-thin text-xs text-center">{published}</p>
+        <p className="text-thin text-xs text-center">{normalDate}</p>
       </div>
     </div>
   );

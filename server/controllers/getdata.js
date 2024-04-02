@@ -91,3 +91,63 @@ export const getRegionData = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const getTopicData = async (req, res) => {
+  try {
+    const topicData = await VisualData.find();
+    const mappedTopics = topicData.reduce((acc, curr) => {
+      if (curr.topic !== "") {
+        if (!acc[curr.topic]) {
+          acc[curr.topic] = 0;
+        }
+        acc[curr.topic] += 1;
+      }
+      return acc;
+    }, {});
+
+    const formattedTopics = Object.entries(mappedTopics).map(
+      ([topic, count]) => {
+        return { x: topic, y: count };
+      }
+    );
+
+    let sortedData = [...formattedTopics].sort((a, b) => {
+      return b.value - a.value;
+    });
+
+    let slicedData = sortedData.slice(0, 10);
+
+    res.status(200).json(slicedData);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getYearData = async (req, res) => {
+  try {
+    const yearData = await VisualData.find();
+    const mappedYears = yearData.reduce((acc, curr) => {
+      if (curr.end_year !== "") {
+        if (!acc[curr.end_year]) {
+          acc[curr.end_year] = 0;
+        }
+        acc[curr.end_year] += 1;
+      }
+      return acc;
+    }, {});
+
+    const formattedYears = Object.entries(mappedYears)
+      .map(([year, count]) => {
+        return { id: year, value: count };
+      })
+      .filter((item) => item.id !== null && item.id !== "null");
+
+    let sortedData = [...formattedYears].sort((a, b) => {
+      return a.id - b.id;
+    });
+
+    res.status(200).json(sortedData);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
